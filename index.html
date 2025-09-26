@@ -1,204 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Karishma's Portfolio">
-    <title>Karishma's Portfolio</title>
-    <style>
-        /* Reset some default styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Karishma Devani — Portfolio</title>
+  <meta name="description" content="Portfolio of Karishma Devani — B.Tech Computer Engineering. AI/ML, NLP, Fintech, Project: Multimodal emotion detection (MELD), LearnVisor, Code Unnati." />
 
-        /* Body and fonts */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+  <!-- Basic styling (single-file, no external libs) -->
+  <style>
+    :root{
+      --bg:#f6f3ee; /* soft cream */
+      --card:#ffffff;
+      --muted:#6b6b6b;
+      --accent:#2f4f4f; /* deep green-gray: old-money vibe */
+      --accent-2:#8a7b5b; /* warm gold */
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#efeae0);color:#222}
+    a{color:var(--accent);text-decoration:none}
 
-        h1, h2, h3 {
-            color: #333;
-        }
+    .wrap{max-width:1100px;margin:36px auto;padding:28px}
+    header{display:flex;align-items:center;gap:20px}
+    .photo{width:108px;height:108px;border-radius:50%;background:linear-gradient(135deg,#ddd,#fff);box-shadow:0 6px 18px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--muted)}
+    h1{margin:0;font-size:1.8rem;letter-spacing:0.3px}
+    .sub{color:var(--muted);margin-top:6px}
 
-        /* Header styles */
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-        }
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:26px;margin-top:22px}
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
+    /* main column */
+    .card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(25,25,25,0.04)}
+    .intro p{margin:0 0 12px 0;color:var(--muted);line-height:1.45}
 
-        header h1 {
-            font-size: 2rem;
-        }
+    /* badges */
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .badge{padding:8px 12px;border-radius:999px;background:var(--glass);font-size:0.85rem;color:var(--accent);border:1px solid rgba(0,0,0,0.04)}
 
-        nav ul {
-            list-style: none;
-        }
+    /* projects */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+    .proj{padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfaf8);border:1px solid rgba(0,0,0,0.03)}
+    .proj h4{margin:0 0 8px 0}
+    .proj p{margin:0;color:var(--muted);font-size:0.92rem}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+    .tag{font-size:0.8rem;padding:6px 8px;border-radius:8px;background:#f2efe8;color:#4b4b4b}
 
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
+    /* side column */
+    .side .section{margin-bottom:16px}
+    .skills{display:flex;flex-direction:column;gap:8px}
+    .skill{display:flex;justify-content:space-between;align-items:center}
+    .meter{height:8px;background:#eee;border-radius:20px;flex:1;margin-left:10px;overflow:hidden}
+    .meter > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));}
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-        }
+    /* resume/contact */
+    .cta{display:flex;gap:10px;margin-top:12px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:600;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--accent)}
 
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.9rem}
 
-        /* Section styles */
-        .section {
-            padding: 50px 0;
-            text-align: center;
-        }
+    /* responsive */
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr;}
+      .photo{width:86px;height:86px}
+    }
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
+    /* little code block style for commands */
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;background:#f8f6f2;padding:8px;border-radius:8px;color:#444;font-size:0.95rem}
 
-        /* Projects Section */
-        .project-list {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .project {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 30%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .project h3 {
-            margin-bottom: 10px;
-        }
-
-        /* Form Styles */
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        form input, form textarea {
-            width: 100%;
-            max-width: 500px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        form button {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        form button:hover {
-            background-color: #555;
-        }
-
-        /* Footer styles */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-        }
-    </style>
+  </style>
 </head>
 <body>
+  <div class="wrap">
     <header>
-        <div class="container">
-            <h1>Karishma</h1>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+      <div class="photo" aria-hidden="true">KD</div>
+      <div>
+        <h1>Karishma Devani</h1>
+        <div class="sub">B.Tech — Computer Engineering | AI/ML (NLP & Multimodal) • Fintech • Data Viz</div>
+        <div class="badges" style="margin-top:10px">
+          <div class="badge">Karishma Devani</div>
+          <div class="badge">Third Year, Institute of Advanced Research</div>
+          <div class="badge">Secretary — Computer & Gaming Club</div>
         </div>
+      </div>
     </header>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Hello! I'm Karishma, a passionate developer with a love for creating beautiful and functional websites. I have experience in HTML, CSS, JavaScript, and more. I am always eager to learn and grow as a developer.</p>
+    <div class="grid">
+      <main>
+        <section class="card intro" id="about">
+          <h2 style="font-size:1.15rem;margin:0 0 10px 0">About</h2>
+          <p>
+            I'm Karishma — a computer engineering student who loves building practical AI systems with clear user value. I focus on NLP, multimodal emotion detection, and fintech use-cases. I prefer clean product experiences and bringing research ideas into working prototypes.
+          </p>
+
+          <div style="display:flex;gap:12px;margin-top:12px;align-items:center">
+            <button class="btn" onclick="downloadResume()">Download Resume</button>
+            <a class="btn ghost" href="#contact">Contact</a>
+          </div>
+        </section>
+
+        <section class="card" id="projects" style="margin-top:18px">
+          <h2 style="font-size:1.05rem;margin:0 0 10px 0">Selected projects</h2>
+
+          <div class="projects">
+            <article class="proj">
+              <h4>Multimodal Emotion Detection (MELD)</h4>
+              <p>Prototype for AI-based mental health assessment using audio + facial frames. Built preprocessing pipeline, used BERT/Whisper-style audio embeddings and fused modalities.</p>
+              <div class="tags"><span class="tag">PyTorch</span><span class="tag">MELD</span><span class="tag">NLP</span><span class="tag">Audio</span></div>
+            </article>
+
+            <article class="proj">
+              <h4>LearnVisor — Learning Assistant</h4>
+              <p>An AI-driven study assistant integrating MediaPipe for video-based interactions and an LLM backend for explanations and quizzes.</p>
+              <div class="tags"><span class="tag">MediaPipe</span><span class="tag">Gradio</span><span class="tag">LLM</span></div>
+            </article>
+
+            <article class="proj">
+              <h4>OfficeGenie — Meeting Assistant</h4>
+              <p>Multi-agent system that transcribes, summarizes, and turns meeting notes into tasks. Includes summarizer + task manager agents and calendar integration.</p>
+              <div class="tags"><span class="tag">Whisper</span><span class="tag">LangChain</span><span class="tag">FastAPI</span></div>
+            </article>
+
+            <article class="proj">
+              <h4>Fintech Prototype (PoC)</h4>
+              <p>Small-scale payment routing & micropayments research inspired by intermediary-based trading ideas. Focus on secure audit trail and UX.</p>
+              <div class="tags"><span class="tag">Blockchain</span><span class="tag">Research</span><span class="tag">Fintech</span></div>
+            </article>
+          </div>
+
+        </section>
+
+        <section class="card" style="margin-top:18px" id="writing">
+          <h2 style="font-size:1.05rem;margin:0 0 10px 0">Writing & Talks</h2>
+          <p style="margin-bottom:8px;color:var(--muted)">Notes, presentation slides, and summaries for talks on prompt engineering, data viz, and AI ethics.</p>
+          <div class="mono">Example command: git clone &nbsp;git@github.com:yourname/portfolio.git</div>
+        </section>
+
+      </main>
+
+      <aside class="side">
+        <div class="card section">
+          <h3 style="margin:0 0 8px 0">Skills</h3>
+          <div class="skills">
+            <div class="skill"><strong>NLP</strong><div class="meter" aria-hidden="true"><i style="width:85%"></i></div></div>
+            <div class="skill"><strong>Multimodal ML</strong><div class="meter" aria-hidden="true"><i style="width:78%"></i></div></div>
+            <div class="skill"><strong>Data Viz (Power BI)</strong><div class="meter" aria-hidden="true"><i style="width:72%"></i></div></div>
+            <div class="skill"><strong>Web & APIs</strong><div class="meter" aria-hidden="true"><i style="width:70%"></i></div></div>
+          </div>
         </div>
-    </section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>My Projects</h2>
-            <div class="project-list">
-                <div class="project">
-                    <h3>Project 1</h3>
-                    <p>Description of project 1 goes here. You can add details about the technologies used, the problem solved, and any challenges you faced.</p>
-                </div>
-                <div class="project">
-                    <h3>Project 2</h3>
-                    <p>Description of project 2 goes here. Share some insights about your work on this project and how it showcases your skills.</p>
-                </div>
-                <div class="project">
-                    <h3>Project 3</h3>
-                    <p>Description of project 3 goes here. Don't forget to mention the key achievements or outcomes of the project.</p>
-                </div>
-            </div>
+        <div class="card section">
+          <h3 style="margin:0 0 8px 0">Education</h3>
+          <div style="color:var(--muted)">B.Tech — Computer Engineering<br>Institute of Advanced Research, Gandhinagar</div>
         </div>
-    </section>
 
-    <section id="contact" class="section">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>If you'd like to work with me or just want to connect, feel free to reach out!</p>
-            <form action="#" method="post">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-
-                <button type="submit">Send Message</button>
-            </form>
+        <div class="card section">
+          <h3 style="margin:0 0 8px 0">Roles</h3>
+          <div style="color:var(--muted)">Secretary — Computer & Gaming Club<br>Code for Change contributor</div>
         </div>
-    </section>
+
+        <div class="card section" id="contact">
+          <h3 style="margin:0 0 8px 0">Contact</h3>
+          <p style="margin:0 0 10px 0;color:var(--muted)">I'm open to internships, collaborations, and project reviews.</p>
+          <div style="display:flex;gap:8px;flex-direction:column">
+            <a class="btn" href="mailto:karishmadevani.btce2022@iar.ac.in?subject=Hi%20Karishma">Email me</a>
+            <a class="btn ghost" href="#" onclick="copyEmail(event)">Copy email</a>
+            <a class="btn ghost" href="#" onclick="toggleTheme(event)">Toggle theme</a>
+          </div>
+          <small style="display:block;margin-top:10px;color:var(--muted)">Email: <strong>karishmadevani.btce2022@iar.ac.in</strong></small>
+        </div>
+
+      </aside>
+    </div>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Karishma. All Rights Reserved.</p>
-        </div>
+      Made with care — Karishma Devani • <span style="color:var(--muted)">Last updated: Sep 26, 2025</span>
     </footer>
+  </div>
+
+  <script>
+    function downloadResume(){
+      // placeholder — replace url with hosted resume link or data URI
+      const url = '#';
+      if(url === '#'){
+        alert('Replace the resume link in the HTML with your resume file URL (or host it and paste the link).');
+      } else {
+        window.open(url,'_blank');
+      }
+    }
+
+    function copyEmail(e){
+      e.preventDefault();
+      navigator.clipboard?.writeText('karishmadevani.btce2022@iar.ac.in').then(()=>{
+        alert('Email copied to clipboard');
+      }).catch(()=>{alert('Copy failed — please copy manually')});
+    }
+
+    function toggleTheme(e){
+      e.preventDefault();
+      const root = document.documentElement;
+      if(root.style.getPropertyValue('--bg') === '#0b1220'){
+        // switch back to light
+        root.style.setProperty('--bg','#f6f3ee');
+        root.style.setProperty('--card','#ffffff');
+        root.style.setProperty('--accent','#2f4f4f');
+        root.style.setProperty('--accent-2','#8a7b5b');
+      } else {
+        // dark-ish theme
+        root.style.setProperty('--bg','#0b1220');
+        root.style.setProperty('--card','#071021');
+        root.style.setProperty('--accent','#8fb3a5');
+        root.style.setProperty('--accent-2','#c9b37e');
+      }
+    }
+  </script>
 </body>
 </html>
